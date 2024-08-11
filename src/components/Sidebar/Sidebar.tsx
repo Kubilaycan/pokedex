@@ -2,6 +2,14 @@ import { useEffect, useState } from 'react';
 import './Sidebar.css';
 import { PokemonData } from '../../types/Pokemon';
 
+import { IoCloseOutline } from 'react-icons/io5';
+import { GiHealthNormal } from "react-icons/gi";
+import { GiSpinningSword } from "react-icons/gi";
+import { GiShield } from "react-icons/gi";
+import { GiBouncingSword } from "react-icons/gi";
+import { GiCheckedShield } from "react-icons/gi";
+import { GiRun } from "react-icons/gi";
+
 function Sidebar({pokemon} : {pokemon: PokemonData | undefined}) {
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
@@ -17,13 +25,60 @@ function Sidebar({pokemon} : {pokemon: PokemonData | undefined}) {
         }
     }, [pokemon]);
 
+    const statIcon = (statName: string) => {
+        switch (statName) {
+            case 'hp':
+                return <GiHealthNormal size={32} color='black' />
+                break;
+            case 'attack':
+                return <GiSpinningSword size={32} color='black' />
+                break;
+            case 'defense':
+                return <GiShield size={32} color='black' />
+                break;
+            case 'special-attack':
+                return <GiBouncingSword size={32} color='black' />
+                break;
+            case 'special-defense':
+                return <GiCheckedShield size={32} color='black' />
+                break;
+            case 'speed':
+                return <GiRun size={32} color='black' />
+                break;
+            default:
+                return <></>
+                break;
+        }
+    }
+
     return (
         <>
             {
                 isVisible ? (
                     <div className='sidebar-backdrop' onClick={outsideClick}>
                         <div className='sidebar-container'>
-                        <img className='sidebar-pokemon-image stroke' src={pokemon?.sprites.other.showdown.front_default} />
+                            <div>
+                                <div className='sidebar-close-button'>
+                                    <IoCloseOutline color='black' size={32} />
+                                </div>
+                                <img className='sidebar-pokemon-image' src={pokemon?.sprites.other.showdown.front_default} />
+                                <div className='sidebar-pokemon-name'>
+                                    {pokemon?.name}
+                                </div>
+                                <div>
+                                    {pokemon?.stats.map((stat, index) => {
+                                        return (
+                                            <div className='sidebar-stat-container' key={index}>
+                                                {statIcon(stat.stat.name)}
+                                                <div>
+                                                    <div>{stat.stat.name}</div>
+                                                    <div>{stat.base_stat}</div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 ) : (

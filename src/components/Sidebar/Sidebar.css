@@ -22,6 +22,12 @@
     align-items: center;
 }
 
+.sidebar-close-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
 .sidebar-pokemon-image {
     height: 256px;
     width: 256px;
@@ -29,4 +35,16 @@
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
     padding: 16px;
+    padding-top: 0;
+}
+
+.sidebar-pokemon-name {
+    color: black;
+}
+
+.sidebar-stat-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: black;
 }
