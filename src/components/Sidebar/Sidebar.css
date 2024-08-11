@@ -1,0 +1,32 @@
+.sidebar-backdrop {
+    background-color: rgb(70 70 70 / 45%);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.sidebar-container {
+    height: calc(100vh - 64px);
+    width: 384px;
+    position: absolute;
+    right: 48px;
+    top: 32px;
+    z-index: 11;
+    background-color: #F5FFFA;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-pokemon-image {
+    height: 256px;
+    width: 256px;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    padding: 16px;
+}
