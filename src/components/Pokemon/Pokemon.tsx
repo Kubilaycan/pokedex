@@ -1,6 +1,7 @@
+import './Pokemon.css'
 import { useEffect, useState } from 'react'
 import { PokemonData } from '../../types/Pokemon'
-import './Pokemon.css'
+import { Tooltip } from 'react-tooltip';
 
 function Pokemon({name, url, onSelect} : {name: string, url: string, onSelect: (arg0: PokemonData | undefined) => void}) {
     const [pokemon, setPokemon] = useState<PokemonData>();
@@ -34,7 +35,8 @@ function Pokemon({name, url, onSelect} : {name: string, url: string, onSelect: (
                     {pokemon?.types.map((pt, key) => {
                         return (
                             <div className='type' key={key}>
-                                <img height={32} width={32} src={'type-icons/' + pt.type.name + '.svg'} />
+                                <img height={32} width={32} src={'type-icons/' + pt.type.name + '.svg'} data-tooltip-id={pokemon?.id + pt.type.name} />
+                                <Tooltip id={pokemon?.id + pt.type.name} content={pt.type.name.charAt(0).toUpperCase() + pt.type.name.slice(1)} place='top' style={{backgroundColor: '#F5FFFA', borderRadius: 12, fontSize: 16, color: '#2F4F4F'}} border='2px solid #E6E6FA' opacity={1} />
                             </div>
                         )
                     })}

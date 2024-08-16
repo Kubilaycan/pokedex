@@ -8,6 +8,12 @@
     z-index: 10;
 }
 
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
 .sidebar-content {
     width: 352px;
 }
@@ -29,7 +35,11 @@
 .sidebar-close-button {
     display: flex;
     justify-content: flex-end;
-    margin-top: 16px;
+    margin: 16px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
 }
 
 .sidebar-pokemon-image-container {
@@ -52,7 +62,8 @@
     color: black;
     text-align: center;
     font-size: 2em;
-    margin-bottom: 16px;
+    width: 100%;
+    margin-top: 16px;
 }
 
 .sidebar-stat-grid {
@@ -60,6 +71,7 @@
     grid-template-columns: 50% 50%;
     width: 100%;
     gap: 12px;
+    margin-top: 32px;
 }
 .sidebar-stat-container {
     display: flex;
@@ -76,4 +88,23 @@
 .stat-value {
     font-size: 1.25rem;
     line-height: 1rem;
+}
+
+.genders {
+    display: flex;
+    gap: 12px;
+}
+
+.type-with-name-grid {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-top: 16px;
+}
+
+.type-with-name {
+    display: flex;
+    color: #2F4F4F;
+    align-items: center;
+    gap: 8px;
 }

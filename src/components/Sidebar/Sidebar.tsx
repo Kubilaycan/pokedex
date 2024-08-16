@@ -9,21 +9,29 @@ import { GiShield } from "react-icons/gi";
 import { GiBouncingSword } from "react-icons/gi";
 import { GiCheckedShield } from "react-icons/gi";
 import { GiRun } from "react-icons/gi";
+import { SlSymbleFemale } from "react-icons/sl";
+import { SlSymbolMale } from "react-icons/sl";
+import { Type2 } from '../../types/Pokemon';
 
 function Sidebar({pokemon} : {pokemon: PokemonData | undefined}) {
     const [isVisible, setIsVisible] = useState<boolean>(false);
-
-    const outsideClick = () => {
-        setIsVisible(false);
-        pokemon = undefined;
-    }
+    const [genders, setGenders] = useState<string[]>();
 
     useEffect(() => {
         if (pokemon) {
-            console.log(pokemon);
             setIsVisible(true);
+            fetch("https://pokeapi.co/api/v2/gender/?name=" + pokemon.name)
+                .then((res) => res.json())
+                .then((data) => {
+                    setGenders(data.results.map((p: Type2) => p.name));
+                });
         }
     }, [pokemon]);
+
+    const closeSidebar = () => {
+        setIsVisible(false);
+        pokemon = undefined;
+    }
 
     const statIcon = (statName: string) => {
         switch (statName) {
@@ -51,21 +59,46 @@ function Sidebar({pokemon} : {pokemon: PokemonData | undefined}) {
         }
     }
 
+    const genderIcon = (gender: string) => {
+        switch (gender) {
+            case 'male':
+                return <SlSymbolMale size={32} color='#1E90FF' />
+                break;
+            case 'female':
+                return <SlSymbleFemale size={32} color='#FF1493' />
+                break;
+        }
+    }
+
     return (
         <>
             {
                 isVisible ? (
-                    <div className='sidebar-backdrop' onClick={outsideClick}>
+                    <div className='sidebar-backdrop'>
                         <div className='sidebar-container'>
                             <div className='sidebar-content'>
-                                <div className='sidebar-close-button'>
-                                    <IoCloseOutline color='black' size={32} />
+                                <div className="sidebar-header">
+                                    <div className='sidebar-pokemon-name'>
+                                        {pokemon?.name.toUpperCase()}
+                                    </div>
+                                    <div className='sidebar-close-button' onClick={closeSidebar}>
+                                        <IoCloseOutline color='black' size={32} />
+                                    </div>
                                 </div>
                                 <div className='sidebar-pokemon-image-container'>
                                     <img className='sidebar-pokemon-image' src={pokemon?.sprites.other.showdown.front_default} />
                                 </div>
-                                <div className='sidebar-pokemon-name'>
-                                    {pokemon?.name.toUpperCase()}
+                                <div className='type-with-name-grid'>
+                                    {pokemon?.types.map((pt, key) => {
+                                        return (
+                                            <div className='type-with-name' key={key}>
+                                                <img height={32} width={32} src={'type-icons/' + pt.type.name + '.svg'} data-tooltip-id={pokemon?.id + pt.type.name} />
+                                                <div>
+                                                    {pt.type.name.charAt(0).toUpperCase() + pt.type.name.slice(1)}
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
                                 </div>
                                 <div className='sidebar-stat-grid'>
                                     {pokemon?.stats.map((stat, index) => {
@@ -73,9 +106,18 @@ function Sidebar({pokemon} : {pokemon: PokemonData | undefined}) {
                                             <div className='sidebar-stat-container' key={index}>
                                                 {statIcon(stat.stat.name)}
                                                 <div>
-                                                    <div className='stat-name'>{stat.stat.name.toUpperCase()}</div>
+                                                    <div className='stat-name'>{stat.stat.name.toUpperCase().replace('-', ' ')}</div>
                                                     <div className='stat-value'>{stat.base_stat}</div>
                                                 </div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                                <div className='genders'>
+                                    {genders?.map((gender, index) => {
+                                        return (
+                                            <div key={index} style={{color: 'black'}}>
+                                                {genderIcon(gender)}
                                             </div>
                                         )
                                     })}
