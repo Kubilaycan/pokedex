@@ -28,22 +28,22 @@ function Sidebar({pokemon} : {pokemon: PokemonData | undefined}) {
     const statIcon = (statName: string) => {
         switch (statName) {
             case 'hp':
-                return <GiHealthNormal size={32} color='black' />
+                return <GiHealthNormal size={40} color='black' />
                 break;
             case 'attack':
-                return <GiSpinningSword size={32} color='black' />
+                return <GiSpinningSword size={40} color='black' />
                 break;
             case 'defense':
-                return <GiShield size={32} color='black' />
+                return <GiShield size={40} color='black' />
                 break;
             case 'special-attack':
-                return <GiBouncingSword size={32} color='black' />
+                return <GiBouncingSword size={40} color='black' />
                 break;
             case 'special-defense':
-                return <GiCheckedShield size={32} color='black' />
+                return <GiCheckedShield size={40} color='black' />
                 break;
             case 'speed':
-                return <GiRun size={32} color='black' />
+                return <GiRun size={40} color='black' />
                 break;
             default:
                 return <></>
@@ -57,22 +57,24 @@ function Sidebar({pokemon} : {pokemon: PokemonData | undefined}) {
                 isVisible ? (
                     <div className='sidebar-backdrop' onClick={outsideClick}>
                         <div className='sidebar-container'>
-                            <div>
+                            <div className='sidebar-content'>
                                 <div className='sidebar-close-button'>
                                     <IoCloseOutline color='black' size={32} />
                                 </div>
-                                <img className='sidebar-pokemon-image' src={pokemon?.sprites.other.showdown.front_default} />
-                                <div className='sidebar-pokemon-name'>
-                                    {pokemon?.name}
+                                <div className='sidebar-pokemon-image-container'>
+                                    <img className='sidebar-pokemon-image' src={pokemon?.sprites.other.showdown.front_default} />
                                 </div>
-                                <div>
+                                <div className='sidebar-pokemon-name'>
+                                    {pokemon?.name.toUpperCase()}
+                                </div>
+                                <div className='sidebar-stat-grid'>
                                     {pokemon?.stats.map((stat, index) => {
                                         return (
                                             <div className='sidebar-stat-container' key={index}>
                                                 {statIcon(stat.stat.name)}
                                                 <div>
-                                                    <div>{stat.stat.name}</div>
-                                                    <div>{stat.base_stat}</div>
+                                                    <div className='stat-name'>{stat.stat.name.toUpperCase()}</div>
+                                                    <div className='stat-value'>{stat.base_stat}</div>
                                                 </div>
                                             </div>
                                         )

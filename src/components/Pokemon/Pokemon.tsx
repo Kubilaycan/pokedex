@@ -24,14 +24,21 @@ function Pokemon({name, url, onSelect} : {name: string, url: string, onSelect: (
                 {/* <img className='pokemon-image stroke' src={pokemon?.sprites.other.home.front_default} /> */}
                 {/* <img className='pokemon-image stroke' src={pokemon?.sprites.other.showdown.front_default} /> */}
                 {/* <img className='pokemon-image stroke' src={pokemon?.sprites.versions['generation-v']['black-white'].animated.front_default} /> */}
-                <div className='pokemon-name'>
-                    {pokemon?.name}
+                <div className='pokemon-id'>
+                    #{pokemon?.id.toString().padStart(4, '0')}
                 </div>
-                {pokemon?.stats.map((stat, index) => {
-                    return (
-                        <div className='stat' key={index}>{stat.stat.name}, {stat.base_stat}</div>
-                    )
-                })}
+                <div className='pokemon-name'>
+                    {pokemon?.name.toUpperCase()}
+                </div>
+                <div className='type-grid'>
+                    {pokemon?.types.map((pt, key) => {
+                        return (
+                            <div className='type' key={key}>
+                                <img height={32} width={32} src={'type-icons/' + pt.type.name + '.svg'} />
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )

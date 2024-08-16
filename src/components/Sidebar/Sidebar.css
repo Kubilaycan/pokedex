@@ -8,6 +8,10 @@
     z-index: 10;
 }
 
+.sidebar-content {
+    width: 352px;
+}
+
 .sidebar-container {
     height: calc(100vh - 64px);
     width: 384px;
@@ -15,7 +19,7 @@
     right: 48px;
     top: 32px;
     z-index: 11;
-    background-color: #F5FFFA;
+    background-color: #f5fffa;
     border-radius: 32px;
     display: flex;
     flex-direction: column;
@@ -26,6 +30,12 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 16px;
+}
+
+.sidebar-pokemon-image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .sidebar-pokemon-image {
@@ -40,11 +50,30 @@
 
 .sidebar-pokemon-name {
     color: black;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 16px;
 }
 
+.sidebar-stat-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+    gap: 12px;
+}
 .sidebar-stat-container {
     display: flex;
     align-items: center;
     gap: 16px;
     color: black;
+}
+
+.stat-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 1.25rem;
+    line-height: 1rem;
 }

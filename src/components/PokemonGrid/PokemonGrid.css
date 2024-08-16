@@ -4,7 +4,7 @@
     margin: 12px;
     justify-content: space-evenly;
     gap: 32px;
-    margin-top: 64px;
+    margin-top: 48px;
 }
 
 @media screen and (min-width: 2520px) {

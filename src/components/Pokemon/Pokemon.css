@@ -1,11 +1,17 @@
 .card {
     background-color: #F5FFFA;
-    border-radius: 16px;
+    border-radius: 48px 48px 48px 48px / 72px 72px 72px 72px;
     padding: 8px;
     width: 256px;
     position: relative;
     left: -88px;
     cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 8px 8px 0px rgba(165,165,200,0.4);
 }
 
 .card-content {
@@ -24,12 +30,23 @@
     image-rendering: crisp-edges;
 }
 
+.pokemon-id {
+    color: #2F4F4F;
+    font-weight: 200;
+}
+
 .pokemon-name {
     color: #2F4F4F;
     font-weight: bold;
 }
 
-.stat {
+.type-grid {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.type {
     color: #2F4F4F;
 }
 
