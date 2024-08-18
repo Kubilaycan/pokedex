@@ -5,7 +5,7 @@ import { Tooltip } from 'react-tooltip';
 import { AbilityData } from '../../types/Ability';
 import Capitalize from '../../helpers/CapitalizeHelper';
 
-function Pokemon({name, url, onSelect} : {name: string, url: string, onSelect: (arg0: PokemonData | undefined) => void}) {
+function Pokemon({url, onSelect} : {url: string, onSelect: (arg0: PokemonData | undefined) => void}) {
     const [pokemon, setPokemon] = useState<PokemonData>();
     const [abilities, setAbilities] = useState<AbilityData[]>();
 

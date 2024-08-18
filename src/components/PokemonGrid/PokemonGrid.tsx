@@ -33,7 +33,6 @@ function PokemonGrid({
         return (
           <Pokemon
             key={index}
-            name={pd.name}
             url={pd.url}
             onSelect={onGridPokemonSelect}
           />
