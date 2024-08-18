@@ -4,6 +4,18 @@
   url("./assets/fonts/Pokemon/Pokemon-Solid.ttf")
 }
 
+@font-face {
+  font-family: "Gill-Sans";
+  src: local("Gill-Sans"),
+  url("./assets/fonts/Gill-Sans/Gill-Sans.otf")
+}
+
+@font-face {
+  font-family: "Gill-Sans-Bold";
+  src: local("Gill-Sans-Bold"),
+  url("./assets/fonts/Gill-Sans/Gill-Sans-Bold.otf")
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

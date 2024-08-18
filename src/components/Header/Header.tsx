@@ -1,5 +1,5 @@
 import './Header.css';
-import pokedexLogo from '../../../public/logo.png'
+import pokedexLogo from '/logo.png'
 
 function Header() {
     return (

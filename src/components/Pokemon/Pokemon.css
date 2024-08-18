@@ -1,11 +1,13 @@
 .card {
-    background-color: #F5FFFA;
-    border-radius: 56px 56px 56px 56px / 72px 72px 72px 72px;
-    padding: 8px;
     width: 256px;
-    position: relative;
-    left: -88px;
+    height: 366px;
+    border-radius: 12px;
+    background: #FFCC00;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 100%;
     cursor: pointer;
+    translate: -64px 0;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -33,6 +35,7 @@
 .pokemon-id {
     color: #2F4F4F;
     font-weight: 200;
+    font-family: 'Gill-Sans';
 }
 
 .pokemon-name {
@@ -51,8 +54,8 @@
 }
 
 .stroke {
-    filter: drop-shadow(1px 0 0 black) 
-    drop-shadow(0 1px 0 black)
-    drop-shadow(-1px 0 0 black) 
-    drop-shadow(0 -1px 0 black);
+    filter: drop-shadow(1px 0 0 white) 
+    drop-shadow(0 1px 0 white)
+    drop-shadow(-1px 0 0 white) 
+    drop-shadow(0 -1px 0 white);
 }
