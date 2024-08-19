@@ -12,8 +12,10 @@ import { GiRun } from "react-icons/gi";
 import { SlSymbleFemale } from "react-icons/sl";
 import { SlSymbolMale } from "react-icons/sl";
 import { Type2 } from '../../types/Pokemon';
+import { AbilityData } from '../../types/Ability';
+import Capitalize from '../../helpers/CapitalizeHelper';
 
-function Sidebar({pokemon} : {pokemon: PokemonData | undefined}) {
+function Sidebar({pokemon, abilities} : {pokemon: PokemonData | undefined, abilities: AbilityData[] | undefined}) {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [genders, setGenders] = useState<string[]>();
 
@@ -118,6 +120,20 @@ function Sidebar({pokemon} : {pokemon: PokemonData | undefined}) {
                                         return (
                                             <div key={index} style={{color: 'black'}}>
                                                 {genderIcon(gender)}
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                                <div className='abilities-list'>
+                                    {abilities?.map((ab, key) => {
+                                        return (
+                                            <div key={key}>
+                                                <div className='ability'>
+                                                    <div style={{fontFamily: 'Gill-Sans', color: 'black', fontSize: 18}}>
+                                                        <span style={{fontFamily: 'Gill-Sans-Bold', fontSize: 20}}>{Capitalize(ab.name, '-')}: </span>
+                                                        {ab.effect_entries.find(p => p.language.name == 'en')?.short_effect}
+                                                    </div>
+                                                </div>
                                             </div>
                                         )
                                     })}

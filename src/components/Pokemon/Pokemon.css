@@ -8,20 +8,49 @@
     grid-template-columns: 100%;
     cursor: pointer;
     translate: -64px 0;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: box-shadow 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0px 8px 8px 0px rgba(165,165,200,0.4);
+    box-shadow: 0px 0px 16px 0px rgba(165,165,200,0.4);
+}
+
+.card-background {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
+
+.card-content-container {
+    width: 100%;
+    height: 100%;
+    grid-row-start: 1;
+    grid-column-start: 1;
 }
 
 .card-content {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 256px;
+}
+
+.pokemon-name-type-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.pokemon-image-border {
+    display: flex;
+    justify-content: center;
+    width: 216px;
+    height: 160px;
+    border: 4px solid #FFCC00;
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
 }
 
 .pokemon-image {
@@ -32,25 +61,60 @@
     image-rendering: crisp-edges;
 }
 
+.pokemon-height-weight {
+    color: black;
+    font-size: 10px;
+    background: linear-gradient(to right, #E1B76B, #FFFADF, #D9A550, #FFF9DF, #D1A245);
+    margin-top: 4px;
+    padding: 0 8px;
+    border-radius: 4px
+}
+
 .pokemon-id {
     color: #2F4F4F;
     font-weight: 200;
     font-family: 'Gill-Sans';
+    margin-left: 12px;
 }
 
 .pokemon-name {
-    color: #2F4F4F;
-    font-weight: bold;
+    font-family: 'Gill-Sans-Bold';
+    color: black;
+    font-size: 24px;
+    margin-left: 12px;
 }
 
-.type-grid {
+.hp-type-container {
+    color: #2F4F4F;
+    margin-right: 12px;
     display: flex;
-    gap: 8px;
-    margin-top: 16px;
 }
 
-.type {
-    color: #2F4F4F;
+.hp {
+    align-self: center;
+    font-family: 'Gill-Sans-Bold';
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.type-icon {
+    border-radius: 100%;
+    box-shadow: 0px 0px 8px 0px rgba(255, 255, 255, 0.5);
+}
+
+.abilities-list {
+    width: calc(100% - 24px);
+}
+
+.ability {
+    font-family: 'Gill-Sans-Bold';
+    color: black;
+    font-size: 16px;
+}
+
+.ability-divider {
+    border-color: black;
+    border-top: none;
 }
 
 .stroke {
