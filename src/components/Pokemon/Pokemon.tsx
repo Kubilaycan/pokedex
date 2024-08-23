@@ -15,8 +15,9 @@ function Pokemon({url, onSelect} : {url: string, onSelect: (arg0: PokemonData | 
             .then(res => res.json())
             .then(data => {
                 setPokemon(data);
+                
                 Promise.all((data as PokemonData).abilities.map(a => 
-                    fetch(a.ability.url).then(res2 => res2.json())
+                    fetch(a.ability.url).then(abilityResponse => abilityResponse.json())
                 )).then(ab => {
                     setAbilities(ab);
                 });

@@ -9,17 +9,22 @@ import { AbilityData } from './types/Ability'
 function App() {
   const [sidebarPokemon, setSidebarPokemon] = useState<PokemonData>();
   const [sidebarAbilities, setSidebarAbilities] = useState<AbilityData[]>();
+  const [headerInput, setHeaderInput] = useState<string>();
   
   const setPokemonForSidebar = (pokemon: PokemonData | undefined, abilities: AbilityData[] | undefined) => {
     setSidebarPokemon(pokemon);
     setSidebarAbilities(abilities);
   }
 
+  const handleHeaderInputSubmit = (inputValue: string) => {
+    setHeaderInput(inputValue);
+  }
+
   return (
     <>
-      <Header />
+      <Header onInputSubmit={handleHeaderInputSubmit}/>
       <Sidebar pokemon={sidebarPokemon} abilities={sidebarAbilities}/>
-      <PokemonGrid onPokemonSelect={setPokemonForSidebar}/>
+      <PokemonGrid onPokemonSelect={setPokemonForSidebar} searchInputValue={headerInput}/>
     </>
   )
 }

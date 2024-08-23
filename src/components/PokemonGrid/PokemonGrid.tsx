@@ -1,59 +1,74 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pokemon from "../Pokemon/Pokemon";
 import "./PokemonGrid.css";
 import { PokemonData } from "../../types/Pokemon";
 import { AbilityData } from "../../types/Ability";
-import { Tilt } from "react-tilt";
+import Tilt from "react-parallax-tilt";
 
 interface ListResponse {
-  name: string;
-  url: string;
-}
-
-const defaultOptions = {
-	reverse:        false,  // reverse the tilt direction
-	max:            15,     // max tilt rotation (degrees)
-	perspective:    1000,   // Transform perspective, the lower the more extreme the tilt gets.
-	scale:          1.1,    // 2 = 200%, 1.5 = 150%, etc..
-	speed:          1000,   // Speed of the enter/exit transition
-	transition:     true,   // Set a transition on enter/exit.
-	axis:           null,   // What axis should be disabled. Can be X or Y.
-	reset:          true,    // If the tilt effect has to be reset on exit.
-	easing:         "cubic-bezier(.03,.98,.52,.99)",    // Easing on enter/exit.
+    name: string;
+    url: string;
 }
 
 function PokemonGrid({
-  onPokemonSelect,
+    searchInputValue,
+    onPokemonSelect,
 }: {
-  onPokemonSelect: (arg0: PokemonData | undefined, args1: AbilityData[] | undefined) => void;
+    searchInputValue: string | undefined,
+    onPokemonSelect: (arg0: PokemonData | undefined, args1: AbilityData[] | undefined) => void;
 }) {
-  const [pokemonGridData, setPokemonGridData] = useState<ListResponse[]>();
+    const [pokemonGridData, setPokemonGridData] = useState<ListResponse[]>();
 
-  useState(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=32&offset=0")
-      .then((res) => res.json())
-      .then((data) => {
-        setPokemonGridData(data.results);
-      });
-  });
+    const fetchPokemonData = () => {
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=32&offset=0")
+        .then((res) => res.json())
+        .then((data) => {
+            setPokemonGridData(data.results);
+        });
+    }
 
-  const onGridPokemonSelect = (pokemon: PokemonData | undefined, abilities: AbilityData[] | undefined) => {
-    onPokemonSelect(pokemon, abilities);
-  };
+    const fetchSinglePokemon = (pokemonName: string) => {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setPokemonGridData([data]);
+            });
+    }
+    
+    useState(() => {
+        fetchPokemonData();
+    });
 
-  return (
-    <div className="pokemon-grid dynamic-grid">
-      {pokemonGridData?.map((pd, index) => {
-        return (
-          <Tilt options={defaultOptions} key={index}>
-            <Pokemon
-              url={pd.url}
-              onSelect={onGridPokemonSelect}
-            />
-          </Tilt>
-        );
-      })}
-    </div>
-  );
+    useEffect(() => {
+        if (searchInputValue) {
+            fetchSinglePokemon(searchInputValue.trim().toLowerCase());
+        } else {
+            fetchPokemonData();
+        }
+    }, [searchInputValue])
+    
+    const onGridPokemonSelect = (pokemon: PokemonData | undefined, abilities: AbilityData[] | undefined) => {
+        onPokemonSelect(pokemon, abilities);
+    };
+    
+    return (
+        <div className="pokemon-grid dynamic-grid">
+        {pokemonGridData?.map((pd) => {
+            return (
+                <Tilt
+                    tiltMaxAngleX={15}
+                    tiltMaxAngleY={15}
+                    scale={1.1}
+                    transitionSpeed={600}
+                    key={pd.name}>
+                        <Pokemon
+                        url={pd.url}
+                        onSelect={onGridPokemonSelect}
+                        />
+                </Tilt>
+            );
+        })}
+        </div>
+    );
 }
 export default PokemonGrid;
