@@ -14,6 +14,7 @@ import { SlSymbolMale } from "react-icons/sl";
 import { Type2 } from '../../types/Pokemon';
 import { AbilityData } from '../../types/Ability';
 import Capitalize from '../../helpers/CapitalizeHelper';
+import { AnimatePresence, motion } from 'framer-motion';
 
 function Sidebar({pokemon, abilities} : {pokemon: PokemonData | undefined, abilities: AbilityData[] | undefined}) {
     const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -73,11 +74,11 @@ function Sidebar({pokemon, abilities} : {pokemon: PokemonData | undefined, abili
     }
 
     return (
-        <>
+        <AnimatePresence>
             {
-                isVisible ? (
-                    <div className='sidebar-backdrop'>
-                        <div className='sidebar-container'>
+                isVisible && (
+                    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} className='sidebar-backdrop'>
+                        <motion.div initial={{opacity: 0, x: 352}} animate={{opacity: 1, x: 0}} exit={{opacity: 0, x: 352}} className='sidebar-container'>
                             <div className='sidebar-content'>
                                 <div className="sidebar-header">
                                     <div className='sidebar-pokemon-name'>
@@ -139,13 +140,11 @@ function Sidebar({pokemon, abilities} : {pokemon: PokemonData | undefined, abili
                                     })}
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                ) : (
-                    <></>
+                        </motion.div>
+                    </motion.div>
                 )
             }
-        </>
+        </AnimatePresence>
     );
 }
 export default Sidebar

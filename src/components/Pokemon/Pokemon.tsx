@@ -49,7 +49,8 @@ function Pokemon({url, onSelect} : {url: string, onSelect: (arg0: PokemonData | 
                                 </div>
                             </div>
                             <div className='pokemon-image-border' style={{background: TypeColor(pokemon?.types[0].type.name)}}>
-                                <img className='pokemon-image stroke' src={pokemon?.sprites.front_default} />
+                                {/* <img className='pokemon-image stroke' src={pokemon?.sprites.front_default} /> */}
+                                <img className='pokemon-image stroke' src={pokemon?.sprites.other['official-artwork'].front_default} />
                                 {/* <img className='pokemon-image stroke' src={pokemon?.sprites.other.home.front_default} /> */}
                                 {/* <img className='pokemon-image stroke' src={pokemon?.sprites.other.showdown.front_default} /> */}
                                 {/* <img className='pokemon-image stroke' src={pokemon?.sprites.versions['generation-v']['black-white'].animated.front_default} /> */}
@@ -67,9 +68,10 @@ function Pokemon({url, onSelect} : {url: string, onSelect: (arg0: PokemonData | 
                                 {abilities?.map((ab, key) => {
                                     return (
                                         <div key={key}>
-                                            <div className='ability'>
+                                            <div className='ability' data-tooltip-id={ab.name + ab.id}>
                                                 {Capitalize(ab.name, '-')}
                                             </div>
+                                            {/* <Tooltip id={ab.name + ab.id} content={ab.effect_entries.find(p => p.language.name === 'en')?.short_effect} place='top' style={{backgroundColor: '#F5FFFA', borderRadius: 12, fontSize: 16, color: '#2F4F4F'}} border='2px solid #E6E6FA' opacity={1} /> */}
                                             {
                                                 key != abilities?.length -1 &&
                                                 <hr className='ability-divider'/>

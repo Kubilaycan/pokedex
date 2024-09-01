@@ -54,3 +54,28 @@
         grid-template-columns: repeat(1, 128px);
     }    
 }
+
+.load-more-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 32px 0;
+}
+
+.load-more {
+    font-size: 24px;
+    background: #FF7043;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.load-more:hover {
+    background: #FF8A65;
+}
+
+.load-more:active {
+    background: #E64A19;
+}
