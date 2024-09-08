@@ -8,15 +8,15 @@ import { AbilityData } from './types/Ability'
 import Pokedex from './components/Pokedex/Pokedex'
 
 function App() {
-  const [sidebarPokemon, setSidebarPokemon] = useState<PokemonData>();
-  const [sidebarAbilities, setSidebarAbilities] = useState<AbilityData[]>();
+  const [pokemon, setPokemon] = useState<PokemonData>();
+  const [abilities, setAbilities] = useState<AbilityData[]>();
   const [headerInput, setHeaderInput] = useState<string>();
 
   const [pokedexVisible, setPokedexVisible] = useState<boolean>();
   
-  const setPokemonForSidebar = (pokemon: PokemonData | undefined, abilities: AbilityData[] | undefined) => {
-    setSidebarPokemon(pokemon);
-    setSidebarAbilities(abilities);
+  const setPokemonForPokedex = (pokemon: PokemonData | undefined, abilities: AbilityData[] | undefined) => {
+    setPokemon(pokemon);
+    setAbilities(abilities);
 
     setPokedexVisible(true);
   }
@@ -33,8 +33,8 @@ function App() {
     <>
       <Header onInputSubmit={handleHeaderInputSubmit}/>
       {/* <Sidebar pokemon={sidebarPokemon} abilities={sidebarAbilities}/> */}
-      <PokemonGrid onPokemonSelect={setPokemonForSidebar} searchInputValue={headerInput}/>
-      <Pokedex visible={pokedexVisible} onPokedexHide={handlePokedexHide}/>
+      <PokemonGrid onPokemonSelect={setPokemonForPokedex} searchInputValue={headerInput}/>
+      <Pokedex visible={pokedexVisible} onPokedexHide={handlePokedexHide} pokemon={pokemon} abilities={abilities}/>
     </>
   )
 }

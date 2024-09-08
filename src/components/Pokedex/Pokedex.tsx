@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
 import { IoCloseOutline } from 'react-icons/io5';
 import PokedexObject from './PokexedObject/PokedexObject';
+import { PokemonData } from '../../types/Pokemon';
+import { AbilityData } from '../../types/Ability';
 
-function Pokedex({visible, onPokedexHide} : {visible: boolean | undefined, onPokedexHide: () => void}) {
+function Pokedex({visible, onPokedexHide, pokemon, abilities} : {visible: boolean | undefined, onPokedexHide: () => void, pokemon: PokemonData | undefined, abilities: AbilityData[] | undefined }) {
     const [isVisible, setIsVisible] = useState<boolean | undefined>(false);
 
     useEffect(() => {
@@ -25,7 +27,7 @@ function Pokedex({visible, onPokedexHide} : {visible: boolean | undefined, onPok
                             <IoCloseOutline color='black' size={48} />
                         </div>
                         <motion.div initial={{opacity: 0, y: 128}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: 128}} className='pokedex-container'>
-                            <PokedexObject />
+                            <PokedexObject pokemon={pokemon} abilities={abilities}/>
                         </motion.div>
                     </motion.div>
                 )

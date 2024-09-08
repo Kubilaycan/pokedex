@@ -12,38 +12,21 @@ import { motion } from 'framer-motion-3d';
 import { CanvasTexture } from 'three';
 import TextToTexture from '../../../helpers/TextToTextureHelper';
 
-function PokedexModel(props) {
+function PokedexModel({imageUrl, name, abilities, statsLeft, statsRight} : {imageUrl: string | undefined, name: string | undefined, abilities: string[] | undefined, statsLeft: string[] | undefined, statsRight: string[] | undefined}) {
+
   const degree = Math.PI/180;
   const { nodes, materials } = useGLTF('models/pokedex.glb');
-  const texture = useTexture('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png');
+  const texture = useTexture(imageUrl as string);
   texture.minFilter = 1003; // NearestFilter for pixelated view
   texture.magFilter = 1003;
 
-  //const c = document.createElement('canvas');
-  //c.width = 256;
-  //c.height = 128;
-  //let ctx = c.getContext('2d');
-  //if (ctx !== null && ctx !== void 0) {
-  //  ctx.fillStyle = "rbga(255, 255, 255, 0)";
-  //  ctx.fillRect(0, 0, c.width, c.height);
-  //  ctx.textAlign = "center";
-  //  ctx.textBaseline = "middle";
-  //  ctx.fillStyle = "magenta";
-  //  ctx.font = "bold 36px Arial";
-  //  let text = "I love Three.js";
-  //  ctx.fillText(text, c.width * 0.5, c.height * 0.5);
-  //  ctx.strokeStyle = "red";
-  //  ctx.strokeText(text, c.width * 0.5, c.height * 0.5);
-  //}
-
-
-  const textText = TextToTexture(['Pikachu', 'yte'], 256, 128, 36, 0, 0);
-  const abilitiesTexture = TextToTexture([`asdas: ${'asdggfas'}`], 256, 96, 24, 0, 48);
-  const statsLeftTexture = TextToTexture([`HP: ${123}`], 256, 96, 24, 0, 48);
-  const statsRightTexture = TextToTexture([`Attack: ${123}`], 256, 128, 24, 0, 48);
+  const nameTexture = TextToTexture([name as string], 256, 128, 36, 0, 0);
+  const abilitiesTexture = TextToTexture(abilities as string[], 512, 128, 24, 4, 4);
+  const statsLeftTexture = TextToTexture(statsLeft as string[], 256, 96, 24, 4, 12);
+  const statsRightTexture = TextToTexture(statsRight as string[], 256, 96, 24, 4, 12);
 
   return (
-    <group {...props} dispose={null} rotation={[-Math.PI, -1.55, -Math.PI]}>
+    <group dispose={null} rotation={[-Math.PI, -1.55, -Math.PI]}>
       <group scale={[0.129, 1.202, 0.129]}>
         <motion.mesh initial={{rotateY: -150*degree}} animate={{rotateY: 30*degree}} transition={{duration: 0.5}} >
           <group rotation={[-Math.PI, 30*degree, -Math.PI]}>
@@ -95,7 +78,7 @@ function PokedexModel(props) {
             position={[0.5, -0.553, 6.37]}
             rotation={[0, 90*degree, 0]}
             scale={[2.85, 0.19, 2]}>
-              <meshBasicMaterial map={textText} polygonOffset polygonOffsetFactor={-1}/>
+              <meshBasicMaterial map={nameTexture} polygonOffset polygonOffsetFactor={-1}/>
           </Decal>
         </mesh>
         <mesh geometry={nodes.Object_8.geometry} material={materials.LightRed} />
