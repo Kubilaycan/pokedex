@@ -1,0 +1,32 @@
+.pokedex-backdrop {
+    background-color: rgb(70 70 70 / 45%);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokedex-container {
+    background-color: transparent;
+    border-radius: 32px;
+    height: 100%;
+    width: 100%;
+}
+
+.pokedex-close-button {
+    background-color: #f5fffa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 16px;
+    right: 32px;
+    cursor: pointer;
+    border-radius: 16px;
+    z-index: 2;
+}
