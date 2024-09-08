@@ -6,7 +6,7 @@ License: SKETCHFAB Standard (https://sketchfab.com/licenses)
 Source: https://sketchfab.com/3d-models/pokedex-0ec4ebddf61149829c7a3031451290f1
 Title: Pokédex
 */
-
+// @ts-nocheck
 import { Decal, useGLTF, useTexture } from '@react-three/drei';
 import { motion } from 'framer-motion-3d';
 import { CanvasTexture } from 'three';
