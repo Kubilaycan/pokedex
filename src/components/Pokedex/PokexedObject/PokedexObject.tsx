@@ -11,6 +11,8 @@ import Capitalize from "../../../helpers/CapitalizeHelper";
 function PokedexObject({pokemon, abilities} : {pokemon: PokemonData | undefined, abilities: AbilityData[] | undefined}) {
     const screenSize = useScreenSize();
     const [modelScale, setModelScale] = useState<number>(calculateScale);
+    const [canZoom, setCanZoom] = useState<boolean>();
+    const [canPan, setCanPan] = useState<boolean>();
 
     const [pokemonImageUrl, setPokemonImageUrl] = useState<string>();
     const [pokemonName, setPokemonName] = useState<string>();
@@ -20,31 +22,32 @@ function PokedexObject({pokemon, abilities} : {pokemon: PokemonData | undefined,
 
     useEffect(() => {
         setModelScale(calculateScale());
+        calculateZoomAndPanConditions();
     }, [screenSize]);
 
     useEffect(() => {
         setPokemonImageUrl(pokemon?.sprites.front_default);
         setPokemonName(Capitalize(pokemon?.name));
 
-        let abilityArray: string[] = [];
+        const abilityArray: string[] = [];
         abilities?.forEach((ability) => {
-            let line = Capitalize(ability.name, '-') + ': ' + ability.effect_entries.find(p => p.language.name === 'en')?.short_effect;
-            let lines = line.match(/.{1,52}/g);
+            const line = Capitalize(ability.name, '-') + ': ' + ability.effect_entries.find(p => p.language.name === 'en')?.short_effect;
+            const lines = line.match(/.{1,52}/g);
             lines?.forEach(p => {
                 abilityArray.push(p);
             })
         })
         setPokemonAbilities(abilityArray);
 
-        let statLeftArray: string[] = [];
-        let statRightArray: string[] = [];
+        const statLeftArray: string[] = [];
+        const statRightArray: string[] = [];
         pokemon?.stats.forEach((stat) => {
             if (stat.stat.name == 'hp' || stat.stat.name == 'attack' || stat.stat.name == 'special-attack') {
-                let line = stat.stat.name.toUpperCase().replace('-', ' ') + ': ' + stat.base_stat;
+                const line = stat.stat.name.toUpperCase().replace('-', ' ') + ': ' + stat.base_stat;
                 statLeftArray.push(line);
             }
             if (stat.stat.name == 'defense' || stat.stat.name == 'special-defense' || stat.stat.name == 'speed') {
-                let line = stat.stat.name.toUpperCase().replace('-', ' ') + ': ' + stat.base_stat;
+                const line = stat.stat.name.toUpperCase().replace('-', ' ') + ': ' + stat.base_stat;
                 statRightArray.push(line);
             }
         });
@@ -65,6 +68,21 @@ function PokedexObject({pokemon, abilities} : {pokemon: PokemonData | undefined,
         return 1;
     }
 
+    function calculateZoomAndPanConditions(): void {
+        if (screenSize.width > 1100) {
+            setCanPan(false);
+            setCanZoom(false);
+        } else 
+        if (screenSize.width <= 1100 && screenSize.width > 720){
+            setCanPan(false);
+            setCanZoom(false);
+        } else 
+        if (screenSize.width <= 720) {
+            setCanPan(true);
+            setCanZoom(true);
+        }
+    }
+
     return (
         <Canvas>
             <ambientLight intensity={2} />
@@ -78,8 +96,8 @@ function PokedexObject({pokemon, abilities} : {pokemon: PokemonData | undefined,
                 minPolarAngle={Math.PI / 6}
                 maxPolarAngle={Math.PI - Math.PI / 6}
                 enableDamping
-                enableZoom={false}
-                enablePan={false}/>
+                enableZoom={canZoom}
+                enablePan={canPan}/>
         </Canvas>
     )
 }
