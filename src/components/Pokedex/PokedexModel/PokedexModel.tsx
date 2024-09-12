@@ -20,15 +20,15 @@ function PokedexModel({imageUrl, name, abilities, statsLeft, statsRight} : {imag
   texture.minFilter = 1003; // NearestFilter for pixelated view
   texture.magFilter = 1003;
 
-  const nameTexture = TextToTexture([name as string], 256, 128, 36, 0, 0);
-  const abilitiesTexture = TextToTexture(abilities as string[], 512, 128, 24, 4, 4);
-  const statsLeftTexture = TextToTexture(statsLeft as string[], 256, 96, 24, 4, 12);
-  const statsRightTexture = TextToTexture(statsRight as string[], 256, 96, 24, 4, 12);
+  const nameTexture = TextToTexture([name as string], 256, 128, 48, 0, 16, '#64C576', 'black', true);
+  const abilitiesTexture = TextToTexture(abilities as string[], 640, 160, 28, 16, 12, '#353738', 'white', false);
+  const statsLeftTexture = TextToTexture(statsLeft as string[], 256, 96, 24, 4, 16, '#353738', 'white', false);
+  const statsRightTexture = TextToTexture(statsRight as string[], 256, 96, 24, 4, 16, '#353738', 'white', false);
 
   return (
     <group dispose={null} rotation={[-Math.PI, -1.55, -Math.PI]}>
       <group scale={[0.129, 1.202, 0.129]}>
-        <motion.mesh initial={{rotateY: -150*degree}} animate={{rotateY: 30*degree}} transition={{duration: 0.5}} >
+        <motion.mesh initial={{rotateY: -150*degree}} animate={{rotateY: 30*degree}} exit={{rotateY: -150*degree}} transition={{duration: 0.5, ease: 'easeInOut'}} >
           <group rotation={[-Math.PI, 30*degree, -Math.PI]}>
             <mesh geometry={nodes.Object_17.geometry} material={materials.material} />
             <mesh geometry={nodes.Object_18.geometry} material={materials.material_2} >

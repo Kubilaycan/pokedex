@@ -1,7 +1,7 @@
 .pokemon-grid {
     display: grid;
     width: 100%;
-    margin: 12px;
+    margin: 12px 0;
     justify-content: space-evenly;
     gap: 32px;
     margin-top: 48px;

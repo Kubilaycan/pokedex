@@ -18,6 +18,8 @@ function PokedexObject({pokemon, abilities} : {pokemon: PokemonData | undefined,
     const [pokemonStatsLeft, setPokemonStatsLeft] = useState<string[]>();
     const [pokemonStatsRight, setPokemonStatsRight] = useState<string[]>();
 
+    const degree = Math.PI/180;
+
     useEffect(() => {
         setModelScale(calculateScale());
     }, [screenSize]);
@@ -67,16 +69,16 @@ function PokedexObject({pokemon, abilities} : {pokemon: PokemonData | undefined,
 
     return (
         <Canvas>
-            <ambientLight intensity={2} />
-            <directionalLight position={[2, 2, 2]} />
+            <ambientLight intensity={2} color={'#fdfbd3'}/>
+            <directionalLight intensity={2} position={[2, 2, 2]} color={'#fdfbd3'}/>
             <motion.mesh scale={modelScale} animate={{scale: modelScale}}>
                 <PokedexModel imageUrl={pokemonImageUrl} name={pokemonName} abilities={pokemonAbilities} statsLeft={pokemonStatsLeft} statsRight={pokemonStatsRight}/>
             </motion.mesh>
             <OrbitControls
-                minAzimuthAngle={-Math.PI / 4}
-                maxAzimuthAngle={Math.PI / 4}
-                minPolarAngle={Math.PI / 6}
-                maxPolarAngle={Math.PI - Math.PI / 6}
+                minAzimuthAngle={-(15 * degree)}
+                maxAzimuthAngle={15 * degree}
+                minPolarAngle={75 * degree}
+                maxPolarAngle={105 * degree}
                 enableDamping
                 enableZoom={false}
                 enablePan={false}/>
