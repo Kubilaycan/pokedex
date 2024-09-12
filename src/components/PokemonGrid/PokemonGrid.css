@@ -9,49 +9,49 @@
 
 @media screen and (min-width: 2520px) {
     .dynamic-grid {
-        grid-template-columns: repeat(8, 128px);
+        grid-template-columns: repeat(8, 286px);
     }    
 }
 
 @media screen and (min-width: 2220px) and (max-width: 2519px) {
     .dynamic-grid {
-        grid-template-columns: repeat(7, 128px);
+        grid-template-columns: repeat(7, 286px);
     }    
 }
 
 @media screen and (min-width: 1920px) and (max-width: 2219px) {
     .dynamic-grid {
-        grid-template-columns: repeat(6, 128px);
+        grid-template-columns: repeat(6, 286px);
     }    
 }
 
 @media screen and (min-width: 1620px) and (max-width: 1919px) {
     .dynamic-grid {
-        grid-template-columns: repeat(5, 128px);
+        grid-template-columns: repeat(5, 286px);
     }    
 }
 
 @media screen and (min-width: 1320px) and (max-width: 1619px) {
     .dynamic-grid {
-        grid-template-columns: repeat(4, 128px);
+        grid-template-columns: repeat(4, 286px);
     }    
 }
 
 @media screen and (min-width: 1020px) and (max-width: 1319px) {
     .dynamic-grid {
-        grid-template-columns: repeat(3, 128px);
+        grid-template-columns: repeat(3, 286px);
     }    
 }
 
 @media screen and (min-width: 720px) and (max-width: 1019px) {
     .dynamic-grid {
-        grid-template-columns: repeat(2, 128px);
+        grid-template-columns: repeat(2, 286px);
     }    
 }
 
 @media screen and (max-width: 719px) {
     .dynamic-grid {
-        grid-template-columns: repeat(1, 128px);
+        grid-template-columns: repeat(1, 286px);
     }    
 }
 
