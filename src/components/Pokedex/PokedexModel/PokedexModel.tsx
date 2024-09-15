@@ -26,9 +26,9 @@ function PokedexModel({imageUrl, name, abilities, statsLeft, statsRight} : {imag
   const statsRightTexture = TextToTexture(statsRight as string[], 256, 96, 24, 4, 16, '#353738', 'white', false);
 
   return (
-    <group dispose={null} rotation={[-Math.PI, -1.55, -Math.PI]}>
-      <group scale={[0.129, 1.202, 0.129]}>
-        <motion.mesh initial={{rotateY: -150*degree}} animate={{rotateY: 30*degree}} exit={{rotateY: -150*degree}} transition={{duration: 0.5, ease: 'easeInOut'}} >
+    <motion.group dispose={null} rotation={[-Math.PI, -1.55, -Math.PI]} initial={{y: -3}} animate={{y: 0, transition: {duration: 0.1}}} exit={{y: -3, transition: {duration: 0.1, delay: 0.35}}}>
+      <motion.group initial={{z: -0.65}} animate={{z: 0}} exit={{z: -0.65}} scale={[0.129, 1.202, 0.129]} transition={{delay: 0.1}}>
+        <motion.mesh initial={{rotateY: -150*degree}} animate={{rotateY: 30*degree}} exit={{rotateY: -150*degree}} transition={{duration: 0.35, ease: 'easeInOut', delay: 0.1}} >
           <group rotation={[-Math.PI, 30*degree, -Math.PI]}>
             <mesh geometry={nodes.Object_17.geometry} material={materials.material} />
             <mesh geometry={nodes.Object_18.geometry} material={materials.material_2} >
@@ -89,8 +89,8 @@ function PokedexModel({imageUrl, name, abilities, statsLeft, statsRight} : {imag
         <mesh geometry={nodes.Object_13.geometry} material={materials.Pinkish} />
         <mesh geometry={nodes.Object_14.geometry} material={materials.Blue} />
         <mesh geometry={nodes.Object_15.geometry} material={materials.Dark} />
-      </group>
-    </group>
+      </motion.group>
+    </motion.group>
   )
 }
 

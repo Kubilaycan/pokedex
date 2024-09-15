@@ -22,11 +22,11 @@ function Pokedex({visible, onPokedexHide, pokemon, abilities} : {visible: boolea
         <AnimatePresence>
             {
                 isVisible && (
-                    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} className='pokedex-backdrop'>
+                    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0, transition: {delay: 0.5}}} className='pokedex-backdrop'>
                         <div className='pokedex-close-button' onClick={closeSidebar}>
                             <IoCloseOutline color='black' size={48} />
                         </div>
-                        <motion.div initial={{opacity: 0.5, y: 128}} animate={{opacity: 1, y: 0}} exit={{opacity: 0.5, y: 128}} transition={{duration: 0.5, type: 'spring'}} className='pokedex-container'>
+                        <motion.div initial={{opacity: 0.5}} animate={{opacity: 1}} exit={{opacity: 0.5, transition: {delay: 0.5}}} transition={{duration: 0.5, type: 'spring'}} className='pokedex-container'>
                             <PokedexObject pokemon={pokemon} abilities={abilities}/>
                         </motion.div>
                     </motion.div>
