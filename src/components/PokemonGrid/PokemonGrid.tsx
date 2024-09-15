@@ -35,6 +35,7 @@ function PokemonGrid({
             .then((res) => res.json())
             .then((data) => {
                 setPokemonGridData(pokemonGridData?.concat(data.results));
+                setNextUrl(data.next);
             });
         }
     }

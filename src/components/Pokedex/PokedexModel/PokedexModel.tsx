@@ -9,7 +9,6 @@ Title: Pokédex
 // @ts-nocheck
 import { Decal, useGLTF, useTexture } from '@react-three/drei';
 import { motion } from 'framer-motion-3d';
-import { CanvasTexture } from 'three';
 import TextToTexture from '../../../helpers/TextToTextureHelper';
 
 function PokedexModel({imageUrl, name, abilities, statsLeft, statsRight} : {imageUrl: string | undefined, name: string | undefined, abilities: string[] | undefined, statsLeft: string[] | undefined, statsRight: string[] | undefined}) {
