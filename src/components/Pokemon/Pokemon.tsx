@@ -4,11 +4,18 @@ import { PokemonData } from '../../types/Pokemon'
 import { Tooltip } from 'react-tooltip';
 import { AbilityData } from '../../types/Ability';
 import Capitalize from '../../helpers/CapitalizeHelper';
-import TypeColor from '../../helpers/ColorHelper';
+import ColorHelper from '../../helpers/ColorHelper';
+import AudioHelper from '../../helpers/AudioHelper';
 
 function Pokemon({url, onSelect} : {url: string, onSelect: (arg0: PokemonData | undefined, args1: AbilityData[] | undefined) => void}) {
     const [pokemon, setPokemon] = useState<PokemonData>();
     const [abilities, setAbilities] = useState<AbilityData[]>();
+
+    const cardElement = document.getElementById(pokemon?.id + 'card');
+
+    cardElement?.addEventListener('mouseenter', () => {
+        AudioHelper.playHoverAudio();
+    });
 
     useEffect(()=> {
         fetch(url)
@@ -25,6 +32,7 @@ function Pokemon({url, onSelect} : {url: string, onSelect: (arg0: PokemonData | 
     }, []);
 
     const onPokemonSelect = () => {
+        AudioHelper.playSelectAudio();
         onSelect(pokemon, abilities);
     }
 
@@ -32,7 +40,8 @@ function Pokemon({url, onSelect} : {url: string, onSelect: (arg0: PokemonData | 
         <>
             {
                 pokemon &&
-                <div className='card'  onClick={onPokemonSelect}>
+                <div className='card' id={pokemon.id + 'card'} onClick={onPokemonSelect}>
+                    <audio id={pokemon.id + 'hover'} src='audio/card-hover.wav'/>
                     <img className='card-background' src={'type-backgrounds/' + pokemon?.types[0].type.name + '.png'} />
                     <div className='card-content-container'>
                         <div className='card-content'>
@@ -48,7 +57,7 @@ function Pokemon({url, onSelect} : {url: string, onSelect: (arg0: PokemonData | 
                                     <Tooltip id={pokemon?.id + pokemon?.types[0].type.name} content={Capitalize(pokemon?.types[0].type.name)} place='top' style={{backgroundColor: '#F5FFFA', borderRadius: 12, fontSize: 16, color: '#2F4F4F'}} border='2px solid #E6E6FA' opacity={1} />
                                 </div>
                             </div>
-                            <div className='pokemon-image-border' style={{background: TypeColor(pokemon?.types[0].type.name)}}>
+                            <div className='pokemon-image-border' style={{background: ColorHelper.TypeColor(pokemon?.types[0].type.name)}}>
                                 {/* <img className='pokemon-image stroke' src={pokemon?.sprites.front_default} /> */}
                                 <img className='pokemon-image stroke' src={pokemon?.sprites.other['official-artwork'].front_default} />
                                 {/* <img className='pokemon-image stroke' src={pokemon?.sprites.other.home.front_default} /> */}

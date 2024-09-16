@@ -5,7 +5,7 @@ export default function TextToTexture(text: string[], width: number, height: num
 
     canvas.height = height;
     canvas.width = width;
-    let context = canvas.getContext('2d');
+    const context = canvas.getContext('2d');
 
     if (context !== null && context !== void 0) {
         context.fillStyle = fillColor;
@@ -30,7 +30,7 @@ export default function TextToTexture(text: string[], width: number, height: num
         }
     }
 
-    let texture = new CanvasTexture(canvas);
+    const texture = new CanvasTexture(canvas);
     texture.minFilter = 1003; // NearestFilter for pixelated view
     texture.magFilter = 1003;
 

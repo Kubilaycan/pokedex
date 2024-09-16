@@ -1,4 +1,4 @@
-export default function TypeColor(type: string): string {
+function TypeColor(type: string): string {
     switch (type) {
         case 'normal':
             return 'linear-gradient(135deg, #A8A878, #CACAC2)'; // Normal type gradient
@@ -40,3 +40,48 @@ export default function TypeColor(type: string): string {
             return 'linear-gradient(135deg, #000000, #303030)'; // Default gradient
     }
 }
+
+function TypeColorBasic(type: string): string {
+    switch (type) {
+        case 'normal':
+            return '#A8A878'; // Normal type gradient
+        case 'fighting':
+            return '#C03028'; // Fighting type gradient
+        case 'flying':
+            return '#A890F0'; // Flying type gradient
+        case 'poison':
+            return '#A040A0'; // Poison type gradient
+        case 'ground':
+            return '#E0C068'; // Ground type gradient
+        case 'rock':
+            return '#B8A038'; // Rock type gradient
+        case 'bug':
+            return '#A8B820'; // Bug type gradient
+        case 'ghost':
+            return '#705898'; // Ghost type gradient
+        case 'steel':
+            return '#B8B8D0'; // Steel type gradient
+        case 'fire':
+            return '#F08030'; // Fire type gradient
+        case 'water':
+            return '#6890F0'; // Water type gradient
+        case 'grass':
+            return '#78C850'; // Grass type gradient
+        case 'electric':
+            return '#F8D030'; // Electric type gradient
+        case 'psychic':
+            return '#F85888'; // Psychic type gradient
+        case 'ice':
+            return '#98D8D8'; // Ice type gradient
+        case 'dragon':
+            return '#7038F8'; // Dragon type gradient
+        case 'dark':
+            return '#705848'; // Dark type gradient
+        case 'fairy':
+            return '#EE99AC'; // Fairy type gradient
+        default:
+            return '#000000'; // Default gradient
+    }
+}
+
+export default { TypeColor, TypeColorBasic }

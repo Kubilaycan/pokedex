@@ -10,14 +10,17 @@ Title: Pokédex
 import { Decal, useGLTF, useTexture } from '@react-three/drei';
 import { motion } from 'framer-motion-3d';
 import TextToTexture from '../../../helpers/TextToTextureHelper';
+import ImageToTexture from '../../../helpers/ImageToTextureHelper';
+import ColorHelper from '../../../helpers/ColorHelper';
 
-function PokedexModel({imageUrl, name, abilities, statsLeft, statsRight} : {imageUrl: string | undefined, name: string | undefined, abilities: string[] | undefined, statsLeft: string[] | undefined, statsRight: string[] | undefined}) {
+function PokedexModel({imageUrl, name, abilities, statsLeft, statsRight, type} : {imageUrl: string | undefined, name: string | undefined, abilities: string[] | undefined, statsLeft: string[] | undefined, statsRight: string[] | undefined, type: string | undefined}) {
 
   const degree = Math.PI/180;
   const { nodes, materials } = useGLTF('models/pokedex.glb');
   const texture = useTexture(imageUrl as string);
   texture.minFilter = 1003; // NearestFilter for pixelated view
   texture.magFilter = 1003;
+  //const imageTexture = ImageToTexture(imageUrl, 96, 96, 0, 0, ColorHelper.TypeColorBasic(type));
 
   const nameTexture = TextToTexture([name as string], 256, 128, 48, 0, 16, '#64C576', 'black', true);
   const abilitiesTexture = TextToTexture(abilities as string[], 640, 160, 28, 16, 12, '#353738', 'white', false);
@@ -66,9 +69,9 @@ function PokedexModel({imageUrl, name, abilities, statsLeft, statsRight} : {imag
         <mesh geometry={nodes.Object_5.geometry} material={materials.White} />
         <mesh geometry={nodes.Object_6.geometry} material={materials.material_2} >
           <Decal
-            position={[0.5, 0.05, 5]}
+            position={[0.5, 0.045, 5.25]}
             rotation={[0, 90*degree, 0]}
-            scale={[3.5, 0.45, 2]}>
+            scale={[4 , 0.465, 2]}>
               <meshBasicMaterial map={texture} polygonOffset polygonOffsetFactor={-1}/>
           </Decal>
         </mesh>

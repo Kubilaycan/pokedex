@@ -90,7 +90,7 @@ function PokedexObject({pokemon, abilities} : {pokemon: PokemonData | undefined,
             <ambientLight intensity={2} color={'#fdfbd3'}/>
             <directionalLight intensity={2} position={[2, 2, 2]} color={'#fdfbd3'}/>
             <motion.mesh scale={modelScale} animate={{scale: modelScale}}>
-                <PokedexModel imageUrl={pokemonImageUrl} name={pokemonName} abilities={pokemonAbilities} statsLeft={pokemonStatsLeft} statsRight={pokemonStatsRight}/>
+                <PokedexModel imageUrl={pokemonImageUrl} name={pokemonName} abilities={pokemonAbilities} statsLeft={pokemonStatsLeft} statsRight={pokemonStatsRight} type={pokemon?.types[0].type.name}/>
             </motion.mesh>
             <OrbitControls
                 minAzimuthAngle={-(15 * degree)}
